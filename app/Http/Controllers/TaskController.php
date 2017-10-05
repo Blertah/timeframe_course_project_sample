@@ -23,8 +23,21 @@ class TaskController extends Controller
 		return view('tasks.create');
 	}
 
+	function edit(Task $task){
+		return view('tasks.edit',compact('task'));
+	}
 	function store(Request $request)
 	{
-		return $request->all();
+		//return $request->all();
+		//return $request->all();
+	
+		$task = Task::create($request->all());
+		//$tasks = Task::create(["title"=>"titulli","description"=>"pershkrimi","tesT"=>"tesT"]);
+		//$task = new Task($request->all());
+		//$task->title = $request->title;
+		//$task->description = $request->description;
+		//$task->save();
+		return "Task was created successfuly";
+
 	}
 }

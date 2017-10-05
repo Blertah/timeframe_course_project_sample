@@ -10,7 +10,7 @@
         <ul>
     	@foreach($tasks as $task)
             <li>
-                <a href="tasks/{{$task->id}}"> {{$task->title}}</a>
+                <a href="tasks/{{$task->id}}"> {{$task->title}}</a>                 <a href="tasks/{{$task->id}}/edit">Edit</a>
             </li>
         @endforeach
         </ul>
