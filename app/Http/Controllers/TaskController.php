@@ -23,21 +23,50 @@ class TaskController extends Controller
 		return view('tasks.create');
 	}
 
-	function edit(Task $task){
+	function edit(Task $task)
+	{
 		return view('tasks.edit',compact('task'));
 	}
+
+	function update(Request $request,$task)
+	{
+		$task = Task::find($task);
+		$task->fill($request->all());
+		$task->save();
+		return redirect(url("tasks"));
+		//return "Task modified successfuly";
+	}
+
+	function destroy(Request $request,$task)
+	{
+		$task = Task::find($task);
+
+		$task->delete();
+		//return url("tasks");
+		return redirect(url("tasks"));
+	}
+
 	function store(Request $request)
 	{
 		//return $request->all();
 		//return $request->all();
-	
+		
+		$rules = [
+	        'title' => 'required|unique:tasks|max:255',
+	        'description' => 'required',
+	    ];
+
+	    $this->validate($request,$rules);
+		
 		$task = Task::create($request->all());
 		//$tasks = Task::create(["title"=>"titulli","description"=>"pershkrimi","tesT"=>"tesT"]);
 		//$task = new Task($request->all());
 		//$task->title = $request->title;
 		//$task->description = $request->description;
 		//$task->save();
-		return "Task was created successfuly";
+		$request->session()->flash('status', 'Task was successful!');
+		return redirect(url("tasks"));
+		//return "Task was created successfuly";
 
 	}
 }

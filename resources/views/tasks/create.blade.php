@@ -7,6 +7,10 @@
         <title>Laravel</title>
     </head>
     <body>
+
+        @foreach($errors->all() as $error)
+            <p>{{$error}}</p>
+        @endforeach
         <form method="POST" action="{{action('TaskController@store')}}">
           {{ csrf_field() }}
             <label>Title</label><br>
