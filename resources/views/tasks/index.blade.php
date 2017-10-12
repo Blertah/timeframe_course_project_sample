@@ -1,13 +1,7 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laravel</title>
-    </head>
-    <body>
-        <h1>Tasks</h1>
+@extends('master_layout')
+
+@section('content')
+        <h1>Posts</h1>
         @if(Session::has("status"))
             <p>{{Session::get("status")}}</p>
         @endif
@@ -31,3 +25,4 @@
         </ul>
      </body>
 </html>
+@endsection
